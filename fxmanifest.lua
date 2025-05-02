@@ -7,9 +7,13 @@ version '1.0.0'
 lua54 'yes'
 
 client_scripts {
-    --'@ox_lib/init.lua', -- Uncomment if using ox_inventory (Recommended for better client performance). The system will automatically adapt to this change.
-    'config.lua',
-    'client.lua'
+    'config/config.lua',
+    'config/cl_functions.lua',
+    'src/client.lua'
 }
 
-server_script 'server.lua'
+server_scripts {
+    'config/config.lua',
+    'config/sv_functions.lua',
+    'src/server.lua'
+}
