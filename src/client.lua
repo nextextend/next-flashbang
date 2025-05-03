@@ -1,4 +1,4 @@
-incapacitated = false
+Incapacitated = false
 
 local usingOx = false
 local flashLoop = false
@@ -101,7 +101,7 @@ RegisterNetEvent('next-flashbang:flash', function(pos, distance)
     local OnScreen, ScreenX, ScreenY = World3dToScreen2d(pos.x, pos.y, pos.z, 0)
 
     if distance <= Config.StunRadius + 0.0 then
-        incapacitated = true
+        Incapacitated = true
 
         CreateThread(function()
             DisableControls()
@@ -126,7 +126,7 @@ RegisterNetEvent('next-flashbang:flash', function(pos, distance)
             ShakeGameplayCam('HAND_SHAKE', 5.0)
 
             Wait(Config.FlashbangDuration * 1000)
-            incapacitated = false
+            Incapacitated = false
     
             StopGameplayCamShaking(true)
             FlashbangAftermath()
