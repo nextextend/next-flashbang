@@ -62,6 +62,61 @@ local function playEmote(duration)
     ClearPedTasks(ped)
 end
 
+local function applyFlashSlowLook(duration, sensitivityScale)
+    local startTime = GetGameTimer()
+
+    CreateThread(function()
+        local pitch = GetGameplayCamRelativePitch()
+        local heading = 0.0
+    
+        while Incapacitated and (GetGameTimer() - startTime < duration) do
+            DisableControlAction(0, 220, true) -- Look Left/Right
+            DisableControlAction(0, 221, true) -- Look Up/Down
+    
+            local lookX = GetDisabledControlNormal(0, 220)
+            local lookY = GetDisabledControlNormal(0, 221)
+    
+            local damp = sensitivityScale or 0.25
+            heading = heading - (lookX * damp * 10.0)
+            pitch = pitch - (lookY * damp * 10.0)
+    
+            pitch = math.max(-70.0, math.min(42.0, pitch))
+    
+            SetGameplayCamRelativeHeading(heading)
+            SetGameplayCamRelativePitch(pitch, 1.0)
+    
+            Wait(0)
+        end
+    end)
+end
+
+local function clearFlashbangEffects(duration)
+    local ped = PlayerPedId()
+    local fadeDuration = duration or 1000
+    local startTime = GetGameTimer()
+    local endTime = startTime + fadeDuration
+
+    CreateThread(function()
+        while GetGameTimer() < endTime do
+            local now = GetGameTimer()
+            local progress = (now - startTime) / fadeDuration
+            local strength = 1.0 - progress
+
+            SetTimecycleModifierStrength(strength)
+
+            Wait(0)
+        end
+
+        ClearTimecycleModifier()
+        ResetScenarioTypesEnabled()
+        ResetPedMovementClipset(ped, 0.0)
+        ResetPedStrafeClipset(ped)
+        SetPedMotionBlur(ped, false)
+        SetPedIsDrunk(ped, false)
+        StopGameplayCamShaking(true)
+    end)
+end
+
 if GetResourceState('ox_inventory') == 'started' then
     usingOx = true
 
@@ -117,17 +172,25 @@ RegisterNetEvent('next-flashbang:flash', function(pos, distance)
             if usingOx then
                 TriggerEvent('ox_inventory:disarm', true)
             else
-                SetCurrentPedWeapon(PlayerPedId(), `WEAPON_UNARMED`, true)
+                SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
             end
         end
 
+        if Config.SlowMovement then
+            applyFlashSlowLook(Config.FlashbangDuration * 1000, Config.SlowMovementScale)
+        end
+
         CreateThread(function()
+            SetTimecycleModifier("REDMIST_blend")
+            SetTimecycleModifierStrength(1.0)
+            SetPedMotionBlur(ped, true)
+            SetPedIsDrunk(ped, true)
             ShakeGameplayCam('HAND_SHAKE', 5.0)
 
             Wait(Config.FlashbangDuration * 1000)
             Incapacitated = false
     
-            StopGameplayCamShaking(true)
+            clearFlashbangEffects(1500)
             FlashbangAftermath()
         end)
     elseif HasEntityClearLosToEntityInFront(ped, rat) and OnScreen then

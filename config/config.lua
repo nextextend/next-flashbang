@@ -18,3 +18,9 @@ Config.Disarm = true
 -- Timer Configuration
 -- Pretty simple: How long should the player be affected? In seconds.
 Config.FlashbangDuration = 5
+
+-- Slow Mouse Movement Configuration
+-- SlowMovement: Enable to limit the mouse movement speed of the player when stunned by a flashbang.
+-- SlowMovementScale: Scale (0.0 - 1.0) of the original mouse movement. Lower values mean slower mouse movement.
+Config.SlowMovement = true
+Config.SlowMovementScale = 0.1
