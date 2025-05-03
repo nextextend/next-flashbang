@@ -62,7 +62,6 @@ local function playEmote(duration)
     ClearPedTasks(ped)
 end
 
--- Check if ox_inventory is running.
 if GetResourceState('ox_inventory') == 'started' then
     usingOx = true
 
@@ -158,8 +157,8 @@ end)
 exports('onFlashbang', function()
     if not usingOx then
         local ped = PlayerPedId()
-        while IsPedArmed(ped, 4) do
-            if not flashLoop and GetCurrentPedWeapon(ped) == `WEAPON_FLASHBANG` then
+        while IsPedArmed(ped, 2) do
+            if not flashLoop and GetSelectedPedWeapon(ped) == `WEAPON_FLASHBANG` then
                 flashLoop = true
                 handleFlashbang()
             end
