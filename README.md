@@ -1,4 +1,4 @@
-# Next Flashbang | The most optimized flashbang system
+# Next Flashbang | The most optimized flashbang system.
 
 Next Flashbang is a lightweight, high-performance flashbang system designed for FiveM. Built with optimization and reliability in mind, it ensures immersive tactical gameplay while minimizing performance impact across clients and the server.
 
@@ -18,7 +18,8 @@ Next Flashbang is a lightweight, high-performance flashbang system designed for 
 
 ## 🧱 Requirements
 
-- **ox_inventory** (optional but highly recommended)
+- **next-flashbang-item**
+- **ox_inventory** (Highly recommended)
 - **ESX** (optional fallback)
 
 In both cases, you need to add the item yourself. Here's how to do this.
@@ -26,6 +27,8 @@ In both cases, you need to add the item yourself. Here's how to do this.
 ---
 
 ## 🔧 Integration
+
+Download and install both resources (next-flashbang-item & next-flashbang). Add these resources to your resources.cfg.
 
 ### 📦 ox_inventory Setup
 
@@ -40,6 +43,8 @@ Add the flashbang as a **throwable weapon** in your Ox Inventory item configurat
     anim = { 'melee@holster', 'unholster', 200, 'melee@holster', 'holster', 600 },
 }
 ```
+
+After you have added the flashbang as an item, you can give it to players using commands or shops. All that's left to do is to have fun with the flashbang!
 
 ---
 
