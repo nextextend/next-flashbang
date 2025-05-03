@@ -1,0 +1,52 @@
+# Next Flashbang | The most optimized flashbang system
+
+Next Flashbang is a lightweight, high-performance flashbang system designed for FiveM. Built with optimization and reliability in mind, it ensures immersive tactical gameplay while minimizing performance impact across clients and the server.
+
+---
+
+## 🚀 Features
+
+- 🔥 Ultra-optimized client-side flashbang detection
+- 🎯 Proximity-based stun scaling (closer = longer effect)
+- ⚡ Full compatibility with `ox_inventory` (Other frameworks will require some scripting knowledge to implement)
+- 🔊 Optional sound and screen effects
+- 🎮 Automatic disarming on flash (configurable)
+- 🔄 Server sync with networked entity tracking
+- 🔒 Safe and clean handling of game-native throwables
+
+---
+
+## 🧱 Requirements
+
+- **ox_inventory** (optional but highly recommended)
+- **ESX** (optional fallback)
+
+In both cases, you need to add the item yourself. Here's how to do this.
+
+---
+
+## 🔧 Integration
+
+### 📦 ox_inventory Setup
+
+Add the flashbang as a **throwable weapon** in your Ox Inventory item configuration (usually found in `data/items.lua` or your own custom items file):
+
+```lua
+['WEAPON_FLASHBANG'] = {
+    label = 'K-J4 Flashbang',
+    category = 'weapons',
+    weight = 600,
+    throwable = true,
+    anim = { 'melee@holster', 'unholster', 200, 'melee@holster', 'holster', 600 },
+}
+```
+
+---
+
+### 📦 ESX Setup
+
+Full ESX integration is unsupported at this moment. If you don't use ox but still want to use this resource, you may alter this resource in order to achieve this. Use the export below to let the script know that a player is holding a flasbang, and can throw it any minute.
+
+```lua
+exports['next-flashbang']:onFlashbang()
+```
