@@ -154,3 +154,18 @@ RegisterNetEvent('next-flashbang:flash', function(pos, distance)
         end
     end
 end)
+
+exports('onFlashbang', function()
+    if not usingOx then
+        local ped = PlayerPedId()
+        while IsPedArmed(ped, 4) do
+            if not flashLoop and GetCurrentPedWeapon(ped) == `WEAPON_FLASHBANG` then
+                flashLoop = true
+                handleFlashbang()
+            end
+            Wait(1000)
+        end
+
+        flashLoop = false
+    end
+end)

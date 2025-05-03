@@ -1,3 +1,6 @@
+-- If you are not using ox, use this export to let the script know when the player is holding a flashbang.
+-- exports['next-flashbang']:onFlashbang()
+
 -- Implement your own logic here. This function is called right before a flashbang will affect them. Cancel it with this function if you want.
 function CanBeFlashed(position, distance)
     return true
