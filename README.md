@@ -50,7 +50,7 @@ After you have added the flashbang as an item, you can give it to players using 
 
 ### 📦 ESX Setup
 
-Full ESX integration is unsupported at this moment. If you don't use ox but still want to use this resource, you may alter this resource in order to achieve this. Use the export below to let the script know that a player is holding a flasbang, and can throw it any minute.
+Standalone ESX integration (without ox_inventory) is unsupported at this moment. If you don't use ox but still want to use this resource, you may alter this resource in order to achieve this. Use the export below to let the script know that a player is holding a flasbang, and can throw it any minute.
 
 ```lua
 exports['next-flashbang']:onFlashbang()
