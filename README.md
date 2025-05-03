@@ -18,7 +18,7 @@ Next Flashbang is a lightweight, high-performance flashbang system designed for 
 
 ## 🧱 Requirements
 
-- **next-flashbang-item**
+- **[next-flashbang-item](https://github.com/next-resources/next-flashbang-item)**
 - **ox_inventory** (Highly recommended)
 - **ESX** (optional fallback)
 
@@ -28,7 +28,7 @@ In both cases, you need to add the item yourself. Here's how to do this.
 
 ## 🔧 Integration
 
-Download and install both resources (next-flashbang-item & next-flashbang). Add these resources to your resources.cfg.
+Download and install both resources ([next-flashbang-item](https://github.com/next-resources/next-flashbang-item) & next-flashbang). Add these resources to your resources.cfg.
 
 ### 📦 ox_inventory Setup
 
