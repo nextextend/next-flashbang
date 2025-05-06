@@ -20,7 +20,6 @@ Next Flashbang is a lightweight, high-performance flashbang system designed for 
 
 - **[next-flashbang-item](https://github.com/next-resources/next-flashbang-item)**
 - **ox_inventory** (Highly recommended)
-- **ESX** (optional fallback)
 
 In both cases, you need to add the item yourself. Here's how to do this.
 
@@ -44,7 +43,7 @@ Add the flashbang as a **throwable weapon** in your Ox Inventory weapon configur
 }
 ```
 
-After you have added the flashbang as an item, you can give it to players using commands or shops. All that's left to do is to have fun with the flashbang!
+After you have added the flashbang as a weapon, you can give it to players using commands or shops. All that's left to do is to have fun with the flashbang!
 
 ---
 
