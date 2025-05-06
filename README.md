@@ -32,7 +32,7 @@ Download and install both resources ([next-flashbang-item](https://github.com/ne
 
 ### 📦 ox_inventory Setup
 
-Add the flashbang as a **throwable weapon** in your Ox Inventory item configuration (usually found in `data/items.lua` or your own custom items file):
+Add the flashbang as a **throwable weapon** in your Ox Inventory weapon configuration (usually found in `data/weapons.lua` or your own custom weapons file):
 
 ```lua
 ['WEAPON_FLASHBANG'] = {
