@@ -117,6 +117,23 @@ local function clearFlashbangEffects(duration)
     end)
 end
 
+local function applyFlashbangEffect()
+    CreateThread(function()
+        local ped = PlayerPedId()
+        SetTimecycleModifier("REDMIST_blend")
+        SetTimecycleModifierStrength(1.0)
+        SetPedMotionBlur(ped, true)
+        SetPedIsDrunk(ped, true)
+        ShakeGameplayCam('HAND_SHAKE', 5.0)
+
+        Wait(Config.FlashbangDuration * 1000)
+        Incapacitated = false
+
+        clearFlashbangEffects(1500)
+        FlashbangAftermath()
+    end)
+end
+
 if GetResourceState('ox_inventory') == 'started' then
     usingOx = true
 
@@ -180,19 +197,7 @@ RegisterNetEvent('next-flashbang:flash', function(pos, distance)
             applyFlashSlowLook(Config.FlashbangDuration * 1000, Config.SlowMovementScale)
         end
 
-        CreateThread(function()
-            SetTimecycleModifier("REDMIST_blend")
-            SetTimecycleModifierStrength(1.0)
-            SetPedMotionBlur(ped, true)
-            SetPedIsDrunk(ped, true)
-            ShakeGameplayCam('HAND_SHAKE', 5.0)
-
-            Wait(Config.FlashbangDuration * 1000)
-            Incapacitated = false
-    
-            clearFlashbangEffects(1500)
-            FlashbangAftermath()
-        end)
+        applyFlashbangEffect()
     elseif HasEntityClearLosToEntityInFront(ped, rat) and OnScreen then
         CreateThread(function()
             ShakeGameplayCam('HAND_SHAKE', 1.0)
